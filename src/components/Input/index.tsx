@@ -1,3 +1,5 @@
+import { InputFieldStyled } from "./style"
+
 
 
 interface iInputProps{
@@ -5,16 +7,16 @@ interface iInputProps{
     type:string,
     placeholder:string,
     id:string,
-    register?: () => void
+    register(a: any) : any
 }
 
 const Input = ({ label, type, placeholder,id,register}: iInputProps) => {
 
     return ( 
-        <fieldset>
+        <InputFieldStyled>
             <label htmlFor={id}>{label}</label>
             <input type={type} placeholder={placeholder} id={id} {...register}/>
-        </fieldset>
+        </InputFieldStyled>
     )
 }
 

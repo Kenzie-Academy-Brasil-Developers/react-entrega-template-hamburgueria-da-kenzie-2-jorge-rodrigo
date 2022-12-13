@@ -24,5 +24,10 @@ export const GlobalStyle = createGlobalStyle`
         --color-orange: #EB5757;
         --color-grey-1:#E0E0E0;
         --color-grey-2:#828282;
+        --color-grey-3:#F5F5F5;
+        --color-grey-4:#999999;
+        --color-green:#219653;
+        --color-white:#FFFFFF;
+        --color-error: #E83F5B;
     }
 `

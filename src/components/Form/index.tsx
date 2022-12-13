@@ -1,18 +1,19 @@
+import { FormStyled } from "./style";
 
 
 
 interface iFormsProps{
     children: React.ReactNode;
-    sub: () => void
+    sub: (data : any) => void
 }
 
 const Form = ({ children, sub }: iFormsProps)=> {
 
 
     return (
-        <form onSubmit={sub}>
+        <FormStyled onSubmit={sub}>
            {children}
-        </form>
+        </FormStyled>
     )
 }
 
