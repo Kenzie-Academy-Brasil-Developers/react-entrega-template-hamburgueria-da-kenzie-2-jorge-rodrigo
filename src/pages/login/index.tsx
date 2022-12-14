@@ -4,11 +4,11 @@ import Button from "../../components/Button"
 import { useContext } from "react"
 import { UserContext } from "../../context/UserContext"
 import { SubmitHandler, useForm } from "react-hook-form"
-import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Link } from "react-router-dom"
 import Header from "../../components/Header"
 import Input from "../../components/Input"
+import { loginSchema } from "./loginSchema"
 
 export interface iUserForm{
    email:string,
@@ -19,10 +19,7 @@ const LoginPage = () => {
 
   const { login } = useContext(UserContext)
 
-  const loginSchema = yup.object().shape({
-    email: yup.string().required("Email Obrigatorio").email("Coloque um email Valido"),
-    password: yup.string().required("Senha Obrigatoria"),
-  }) 
+  
   const { register,handleSubmit,formState: { errors }, reset } = useForm<iUserForm>({
     resolver: yupResolver(loginSchema)
   })

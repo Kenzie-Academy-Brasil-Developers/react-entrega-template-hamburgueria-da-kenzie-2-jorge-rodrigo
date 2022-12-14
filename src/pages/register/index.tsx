@@ -3,12 +3,12 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { Link } from "react-router-dom"
 import Button from "../../components/Button"
 import Header from "../../components/Header"
-import * as yup from 'yup';
 import Form from "../../components/Form"
 import { DivFormSectionStyled,  MainDivRegister } from "./style"
 import Input from "../../components/Input"
 import { UserContext } from "../../context/UserContext"
 import { useContext } from "react"
+import { registerSchema } from "./registerSchema"
 
 export interface iUserForm{
     name:string,
@@ -21,12 +21,7 @@ const RegisterPage = () => {
   
   const { register : registerFunc } = useContext(UserContext)
 
-    const registerSchema = yup.object().shape({
-        name:yup.string().required("Nome Obrigatorio"),
-        email: yup.string().required("Email Obrigatorio").email("Coloque um email Valido"),
-        password: yup.string().required("Senha Obrigatoria"),
-        passwordValidate: yup.string().oneOf([yup.ref('password'),null], 'Senha precisa ser igual').required("Confirmação de senha Obrigatoria")
-      }) 
+
       const { register,handleSubmit,formState: { errors }, reset } = useForm<iUserForm>({
         resolver: yupResolver(registerSchema)
       })
