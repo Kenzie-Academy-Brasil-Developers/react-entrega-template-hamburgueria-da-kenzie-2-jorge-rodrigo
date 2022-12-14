@@ -31,3 +31,4 @@ export const GlobalStyle = createGlobalStyle`
         --color-error: #E83F5B;
     }
 `
+

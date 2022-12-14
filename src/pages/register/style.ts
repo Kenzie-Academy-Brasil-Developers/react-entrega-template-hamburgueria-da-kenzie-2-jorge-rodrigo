@@ -1,23 +1,27 @@
 import styled from "styled-components";
 
 
-export const MainDiv = styled.div`
+export const MainDivRegister = styled.div`
   max-width: 1000px;
-   
+   width: 100%;
    @media(min-width: 700px){
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      flex-direction: row-reverse;
+      /* flex-direction: row; */
       margin-top: 100px;
       div:first-child{
          margin-top: 70px;
+
+      }
+      div:last-child{
+         /* width: 40%; */
       }
    }
 `
 
 
-export const InputFieldStyled = styled.fieldset`
+export const InputFieldRegisterStyled = styled.fieldset`
  
    border: none;
    padding: 12px 0;

@@ -1,3 +1,4 @@
+import { UseFormRegisterReturn } from "react-hook-form"
 import { InputFieldStyled } from "./style"
 
 
@@ -7,7 +8,7 @@ interface iInputProps{
     type:string,
     placeholder:string,
     id:string,
-    register(a: any) : any
+    register: UseFormRegisterReturn<string>
 }
 
 const Input = ({ label, type, placeholder,id,register}: iInputProps) => {

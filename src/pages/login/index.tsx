@@ -1,6 +1,4 @@
-import { LogoStyled } from "../../styles/logo"
-import Bag from '../../assets/bag.png'
-import { InfoDivStyled, InputFieldStyled, MainDiv, } from "./style"
+import { InputFieldStyled, MainDiv, } from "./style"
 import Form from "../../components/Form"
 import Button from "../../components/Button"
 import { useContext } from "react"
@@ -9,6 +7,8 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Link } from "react-router-dom"
+import Header from "../../components/Header"
+import Input from "../../components/Input"
 
 export interface iUserForm{
    email:string,
@@ -36,23 +36,15 @@ const LoginPage = () => {
    
     return (
         <MainDiv>
-          <div>
-            <LogoStyled>Burguer <span>Kenzie</span></LogoStyled>
-            <InfoDivStyled>
-               <img src={Bag} alt=""/>
-               <p>A vida é como um sanduíche, é preciso recheá-la com os <span>melhores</span> ingredientes.</p>
-            </InfoDivStyled>
-          </div>
+         <Header />
           <div>
             <Form sub={handleSubmit(onHandleSubmit)}>
               <h2>Login</h2>
               <InputFieldStyled>
-              <label htmlFor="email">Email</label>
-              <input type="email" placeholder="Digite seu email" id={"email"} {...register("email")}/>
+              <Input label={"Email"} type={"email"} placeholder={"Digite seu email"} id={"email"} register={register("email")}/>
               {errors.email? <span>{errors.email.message}</span>: <></>}
 
-              <label htmlFor="password">Senha</label>
-              <input type="password" placeholder="Digite sua senha" id="password" {...register("password")}/>
+              <Input label={"Senha"} type={"password"} placeholder={"Digite sua senha"} id={"password"} register={register("password")}/>
               {errors.password? <span>{errors.password.message}</span>: <></>}
 
               </InputFieldStyled>

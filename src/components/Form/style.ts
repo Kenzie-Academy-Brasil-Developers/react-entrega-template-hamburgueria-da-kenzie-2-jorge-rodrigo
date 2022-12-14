@@ -9,6 +9,19 @@ export const FormStyled = styled.form`
     padding-bottom: 25px;
     border-radius: 8px;
 
+    div:first-child{
+        display: flex;
+        justify-content: space-between;
+        a{
+            margin: 0;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            text-decoration: underline;
+            color: var(--color-grey-2);
+        }
+    }
+
     h2{
         font-size: 16px;
         margin: 12px 0;

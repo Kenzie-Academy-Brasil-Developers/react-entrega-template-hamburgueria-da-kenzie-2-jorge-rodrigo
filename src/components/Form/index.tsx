@@ -3,7 +3,7 @@ import { FormStyled } from "./style";
 
 
 interface iFormsProps{
-    children: React.ReactNode;
+    children: React.ReactNode,
     sub: (data : any) => void
 }
 
