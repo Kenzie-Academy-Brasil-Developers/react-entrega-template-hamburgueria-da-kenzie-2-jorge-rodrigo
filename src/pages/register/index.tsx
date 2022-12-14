@@ -5,7 +5,7 @@ import Button from "../../components/Button"
 import Header from "../../components/Header"
 import * as yup from 'yup';
 import Form from "../../components/Form"
-import { InputFieldRegisterStyled, MainDivRegister } from "./style"
+import { DivFormSectionStyled,  MainDivRegister } from "./style"
 import Input from "../../components/Input"
 
 export interface iUserForm{
@@ -37,17 +37,16 @@ const RegisterPage = () => {
           console.log(body)
           reset()
       }
-    
+  
     return (
         <MainDivRegister>
           <Header />
-          <div>
+          <DivFormSectionStyled>
             <Form sub={handleSubmit(onHandleSubmit)}>
               <div>
                  <h2>Cadastro</h2>
                   <Link to='/'>Retornar para o login</Link>
               </div>
-              <InputFieldRegisterStyled>
               <Input label={"Nome"} type={"text"} placeholder={"Digite seu Nome"} id={"name"} register={register("name")}/>
               {errors.name? <span>{errors.name.message}</span>: <></>}
 
@@ -59,11 +58,9 @@ const RegisterPage = () => {
 
               <Input label={"Confirmação de senha"} type={"password"} placeholder={"Digite sua senha novamente"} id={"passwordValidate"} register={register("passwordValidate")}/>
               {errors.passwordValidate? <span>{errors.passwordValidate.message}</span>: <></>}
-
-              </InputFieldRegisterStyled>
               <Button color="green">Cadastrar</Button>
             </Form>
-          </div>
+          </DivFormSectionStyled>
         </MainDivRegister>
     )
 }

@@ -11,6 +11,12 @@ export interface iLogin{
     password: string
 }
 
+export interface iRegister{
+    name:string
+    email:string,
+    password: string
+}
+
 
 export interface iUser{
     email: string,

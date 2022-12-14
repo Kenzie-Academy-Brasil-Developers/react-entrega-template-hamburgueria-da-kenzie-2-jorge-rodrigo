@@ -1,4 +1,4 @@
-import { InputFieldStyled, MainDiv, } from "./style"
+import {  MainDiv, } from "./style"
 import Form from "../../components/Form"
 import Button from "../../components/Button"
 import { useContext } from "react"
@@ -40,14 +40,11 @@ const LoginPage = () => {
           <div>
             <Form sub={handleSubmit(onHandleSubmit)}>
               <h2>Login</h2>
-              <InputFieldStyled>
               <Input label={"Email"} type={"email"} placeholder={"Digite seu email"} id={"email"} register={register("email")}/>
               {errors.email? <span>{errors.email.message}</span>: <></>}
 
               <Input label={"Senha"} type={"password"} placeholder={"Digite sua senha"} id={"password"} register={register("password")}/>
               {errors.password? <span>{errors.password.message}</span>: <></>}
-
-              </InputFieldStyled>
               <Button color="green">Logar</Button>
               <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
               <Link to={"/register"}>Cadastrar</Link>

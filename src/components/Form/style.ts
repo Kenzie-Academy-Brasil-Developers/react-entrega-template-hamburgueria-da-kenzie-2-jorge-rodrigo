@@ -11,6 +11,7 @@ export const FormStyled = styled.form`
 
     div:first-child{
         display: flex;
+        gap: 50px;
         justify-content: space-between;
         a{
             margin: 0;
@@ -25,6 +26,10 @@ export const FormStyled = styled.form`
     h2{
         font-size: 16px;
         margin: 12px 0;
+    }
+    span{
+      margin-top: 8px;
+      color: var(--color-error);
     }
 
     p{

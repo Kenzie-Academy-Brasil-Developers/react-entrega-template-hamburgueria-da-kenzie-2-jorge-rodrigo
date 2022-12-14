@@ -1,8 +1,7 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { iUserForm } from "../pages/login";
 import { api } from "../services/api";
-import { iUserContext, iUserContextProps, iUserResponse, iUser, iLogin } from "./types";
+import { iUserContext, iUserContextProps, iUserResponse, iUser, iLogin, iRegister } from "./types";
 
 
 
@@ -25,6 +24,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         }
     }
 
+    async function register (dataItem: iRegister) {
+        
+    }
     return (
         <UserContext.Provider value={{ login }}>
             { children }

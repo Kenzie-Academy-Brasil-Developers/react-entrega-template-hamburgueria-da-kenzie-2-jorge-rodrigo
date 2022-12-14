@@ -8,19 +8,16 @@ export const MainDivRegister = styled.div`
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      /* flex-direction: row; */
+      flex-direction: row;
       margin-top: 100px;
-      div:first-child{
-         margin-top: 70px;
-
-      }
-      div:last-child{
-         /* width: 40%; */
-      }
    }
 `
 
-
+export const DivFormSectionStyled = styled.div`
+     @media(min-width: 700px){
+      width: 50%;
+     }
+`
 export const InputFieldRegisterStyled = styled.fieldset`
  
    border: none;

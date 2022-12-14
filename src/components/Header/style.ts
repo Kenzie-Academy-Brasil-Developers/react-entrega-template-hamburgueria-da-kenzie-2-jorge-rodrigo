@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 
 export const InfoDivStyled = styled.div`
-
-   margin: 12px auto;
+ 
+   margin: 12px 0;
    padding: 15px 6px;
 
    border: 1px solid var(--color-grey-1);
    border-radius: 8px;
 
    width: 90%;
-
+  
    display: flex;
    justify-content: space-around;
 

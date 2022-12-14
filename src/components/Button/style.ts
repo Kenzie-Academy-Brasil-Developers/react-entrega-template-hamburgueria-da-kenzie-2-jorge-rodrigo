@@ -6,7 +6,7 @@ interface iButtonStyledProps{
 }
 
 export const ButtonStyled = styled.button<iButtonStyledProps>`
-   margin: 0 auto;
+   margin: 10px auto;
    width: 100%;
    height: 50px;
    border-radius: 8px;
