@@ -7,6 +7,8 @@ import * as yup from 'yup';
 import Form from "../../components/Form"
 import { DivFormSectionStyled,  MainDivRegister } from "./style"
 import Input from "../../components/Input"
+import { UserContext } from "../../context/UserContext"
+import { useContext } from "react"
 
 export interface iUserForm{
     name:string,
@@ -16,6 +18,8 @@ export interface iUserForm{
  }
 
 const RegisterPage = () => {
+  
+  const { register : registerFunc } = useContext(UserContext)
 
     const registerSchema = yup.object().shape({
         name:yup.string().required("Nome Obrigatorio"),
@@ -34,8 +38,8 @@ const RegisterPage = () => {
             email:data.email,
             password: data.password
         }
-          console.log(body)
-          reset()
+        registerFunc(body)
+        reset()
       }
   
     return (

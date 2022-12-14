@@ -3,7 +3,8 @@ export interface iUserContextProps{
 }
 
 export interface iUserContext{
-    login: (dataItem: iLogin) => void
+    login: (dataItem: iLogin) => void;
+    register: (dataItem: iRegister) => void
 }
 
 export interface iLogin{

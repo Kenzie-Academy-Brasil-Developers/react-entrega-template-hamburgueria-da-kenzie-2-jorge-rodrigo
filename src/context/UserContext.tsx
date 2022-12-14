@@ -25,10 +25,17 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     }
 
     async function register (dataItem: iRegister) {
+        try{
+            const { data } = await api.post<iUserResponse>("/users",dataItem)
+            setUser(null)
+            navigate("/")
+        }catch(err){
+           console.log(err)
+        }
         
     }
     return (
-        <UserContext.Provider value={{ login }}>
+        <UserContext.Provider value={{ login,register }}>
             { children }
         </UserContext.Provider>
     )

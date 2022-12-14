@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const InfoDivStyled = styled.div`
  
-   margin: 12px 0;
+   margin: 12px auto;
    padding: 15px 6px;
 
    border: 1px solid var(--color-grey-1);
