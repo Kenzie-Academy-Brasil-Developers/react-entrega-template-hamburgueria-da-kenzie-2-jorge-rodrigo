@@ -38,6 +38,7 @@ export const CartStyle = styled.div`
         border-radius: 4px;
         font-weight: 900;
         font-size: 12px;
+        z-index: 0;
     }
 `
 
@@ -180,7 +181,7 @@ export const SearchBarDiv = styled.div<iSearchStyledProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2;
    
    }
 

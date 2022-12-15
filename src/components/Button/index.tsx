@@ -4,13 +4,14 @@ import { ButtonStyled } from "./style"
 interface iButtonProps{
     children: React.ReactNode,
     color: string,
+    click?: ()=> void 
 }
 
-const Button = ( { children,color }: iButtonProps ) => {
+const Button = ( { children,color,click }: iButtonProps ) => {
 
 
     return (
-        <ButtonStyled colorBg={color}>
+        <ButtonStyled colorBg={color} onClick={click}>
            { children }
         </ButtonStyled>
     )

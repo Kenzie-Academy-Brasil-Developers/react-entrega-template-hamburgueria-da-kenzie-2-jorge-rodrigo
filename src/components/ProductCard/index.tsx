@@ -1,11 +1,14 @@
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext"
 
 interface iProduct{
     id: number,
     name: string,
     category: string,
     price: number,
-    img: string
-}
+    img: string,
+    amount: number 
+} 
 
 interface iProductCardProps{
    product: iProduct
@@ -13,6 +16,7 @@ interface iProductCardProps{
 
 const ProductCard = ( { product } : iProductCardProps ) => {
 
+    const { addToCart } = useContext(CartContext)
 
     return ( 
         <li key={product.id}>
@@ -20,7 +24,7 @@ const ProductCard = ( { product } : iProductCardProps ) => {
              <h2>{product.name}</h2>
              <p>{product.category}</p>
              <span>R$ {product.price}</span>
-             <button>Adicionar</button>
+             <button onClick={() => addToCart(product)}>Adicionar</button>
         </li>
     )
 }

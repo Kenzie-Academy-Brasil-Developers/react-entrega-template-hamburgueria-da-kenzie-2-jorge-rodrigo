@@ -8,11 +8,13 @@ import { CartContext } from "../../context/CartContext"
 import ProductList from "../../components/ProductList"
 import ProductCard from "../../components/ProductCard"
 import { Link } from "react-router-dom"
+import Modal from "../../components/modal"
 
 const HomePage = () => {
  
-    const { products } = useContext(CartContext)
+    const { products,counter } = useContext(CartContext)
     const [ active, setActive ] = useState(false)
+    const [ modalOn, setModalOn ] = useState(false)
 
     const activeOn = () => {
       if(!active){
@@ -25,6 +27,7 @@ const HomePage = () => {
 
     return (
         <>
+          {modalOn && <Modal setOff={setModalOn}/>}
            <NavStyled onActive={active}>
               <LogoStyled>Burguer <span>Kenzie</span></LogoStyled>
               <div>
@@ -35,8 +38,8 @@ const HomePage = () => {
                      </div>
                   </SearchBarDiv>
                   <CartStyle>
-                     <span>0</span>
-                     <img src={Cart} alt="" />
+                     <span>{counter}</span>
+                     <img src={Cart} alt=""  onClick={() => setModalOn(true)}/>
                   </CartStyle>
                   <Link to='/' onClick={() => localStorage.clear() }><img src={Exit} alt="" /></Link>
               </div>

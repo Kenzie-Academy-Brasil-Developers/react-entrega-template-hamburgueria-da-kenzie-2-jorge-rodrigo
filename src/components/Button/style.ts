@@ -22,9 +22,13 @@ export const ButtonStyled = styled.button<iButtonStyledProps>`
             `;
           case "grey" :
              return css`
-             background-color: var(--color-grey-3);
+             background-color: var(--color-grey-1);
               color:var(--color-grey-4);
               border: 2px solid var(--color-grey-3);
+              width: 90%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
              `;
    }}};
 `
