@@ -21,7 +21,6 @@ const RegisterPage = () => {
   
   const { register : registerFunc } = useContext(UserContext)
 
-
       const { register,handleSubmit,formState: { errors }, reset } = useForm<iUserForm>({
         resolver: yupResolver(registerSchema)
       })

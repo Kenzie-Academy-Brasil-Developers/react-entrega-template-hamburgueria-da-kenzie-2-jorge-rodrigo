@@ -4,7 +4,8 @@ export interface iUserContextProps{
 
 export interface iUserContext{
     login: (dataItem: iLogin) => void;
-    register: (dataItem: iRegister) => void
+    register: (dataItem: iRegister) => void;
+    user: iUser | null;
 }
 
 export interface iLogin{
@@ -17,7 +18,6 @@ export interface iRegister{
     email:string,
     password: string
 }
-
 
 export interface iUser{
     email: string,

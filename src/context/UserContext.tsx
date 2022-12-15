@@ -5,17 +5,18 @@ import { iUserContext, iUserContextProps, iUserResponse, iUser, iLogin, iRegiste
 
 
 
-export const UserContext = createContext({} as iUserContext)
+export const UserContext = createContext({} as iUserContext) 
 
 
 export const UserProvider = ({ children }: iUserContextProps) => {
-
+ 
     const [ user, setUser ] = useState<iUser | null>(null) 
     const navigate = useNavigate()
-
+ 
+    
     async function login(dataItem: iLogin) {
         try{
-           const { data } = await api.post<iUserResponse>("/login ",dataItem)
+           const { data } = await api.post<iUserResponse>("/login",dataItem)
            setUser(data.user)
            localStorage.setItem("@TOKEN",JSON.stringify(data.accessToken))
            navigate("/homepage")
@@ -35,7 +36,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         
     }
     return (
-        <UserContext.Provider value={{ login,register }}>
+        <UserContext.Provider value={{ login,register,user}}>
             { children }
         </UserContext.Provider>
     )
