@@ -22,7 +22,7 @@ interface iProducts{
 
 export const CartProvider = ({ children }: iCartContextProps) => {
  
-    const { user } = useContext(UserContext)
+    // const { user } = useContext(UserContext)
     const [ products,setProducts ] = useState<iProducts[] | null>()
    
    useEffect(() => {
