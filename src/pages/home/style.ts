@@ -1,13 +1,18 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
+interface iSearchStyledProps{
+    onActive: boolean 
+}
 
-export const NavStyled = styled.nav`
+export const NavStyled = styled.nav<iSearchStyledProps>`
    display: flex;
    justify-content: space-between;
    background-color: var(--color-grey-3);
    padding-bottom: 25px;
+   width: 100%; 
 
    div:last-child{
+
     margin-top: 25px;
     display: flex;
     padding-right: 25px;
@@ -107,4 +112,77 @@ export const ListSectionStyled = styled.div`
         height: 32px;
     }
    }
+`
+
+export const SearchBarDiv = styled.div<iSearchStyledProps>`
+
+   position: relative;
+   border-radius: 60px;
+   transition: 0.5s;
+   height: 25px;
+
+
+   div input{
+    ${({ onActive }) => {
+      switch (onActive) {
+        default: case false:
+            return css`
+             opacity: 0;
+            `;
+          case true :
+             return css`
+             opacity: 100;
+             `;
+   }}};
+    position: absolute;
+    top: -4px;
+    left: -220px;
+    width: 250px;
+    @media(max-width: 360px){
+        width: 150px;
+        left: -120px;
+    }
+    background-color: var(--color-white);
+    z-index: 1;
+    height: 38px;
+    border-radius: 12px;
+    outline: none;
+    padding: 8px;
+    transition: 1.0s;
+    border: 2px solid var(--color-grey-1);
+    
+   }
+
+   img{
+    ${({ onActive }) => {
+      switch (onActive) {
+        default: case false:
+            return css`
+             background-color: transparent;
+             height: 20px;
+             width: 20px;
+            `;
+          case true :
+             return css`
+              padding: 6px 6px;
+              height: 25px;
+              width: 25px;
+              background-color: var(--color-green-2);
+              border-radius: 8px;
+             `;
+   }}};
+    cursor: pointer;
+    
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+   
+   }
+
+
 `

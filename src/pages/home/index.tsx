@@ -2,8 +2,8 @@ import { LogoStyled } from "../../styles/logo"
 import Search from "../../assets/searchBTN.png"
 import Exit from "../../assets/exitBTN.png"
 import Cart from "../../assets/cartBTN.png"
-import { CartStyle, NavStyled,ListSectionStyled } from "./style"
-import { useContext } from "react"
+import { CartStyle, NavStyled,ListSectionStyled, SearchBarDiv } from "./style"
+import { useContext,useState } from "react"
 import { CartContext } from "../../context/CartContext"
 import ProductList from "../../components/ProductList"
 import ProductCard from "../../components/ProductCard"
@@ -12,13 +12,28 @@ import { Link } from "react-router-dom"
 const HomePage = () => {
  
     const { products } = useContext(CartContext)
+    const [ active, setActive ] = useState(false)
+
+    const activeOn = () => {
+      if(!active){
+         setActive(true)
+      }
+      if(active){
+         setActive(false)
+      }
+    }
 
     return (
         <>
-           <NavStyled>
+           <NavStyled onActive={active}>
               <LogoStyled>Burguer <span>Kenzie</span></LogoStyled>
               <div>
-                  <img src={Search} alt="" />
+                  <SearchBarDiv onActive={active} >
+                    <img src={Search} alt="" onClick={ activeOn }/>
+                     <div>
+                        <input type="text" disabled={!active} placeholder="Digite sua pesquisa..."/>
+                     </div>
+                  </SearchBarDiv>
                   <CartStyle>
                      <span>0</span>
                      <img src={Cart} alt="" />
