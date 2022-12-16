@@ -5,15 +5,13 @@ interface iSearchStyledProps{
 }
 
 export const NavStyled = styled.nav<iSearchStyledProps>`
-   display: flex;
-   justify-content: space-between;
    background-color: var(--color-grey-3);
-   padding-bottom: 25px;
+   padding-bottom: 15px;
    width: 100%; 
 
    div:last-child{
 
-    margin-top: 25px;
+    padding-top: 15px;
     display: flex;
     padding-right: 25px;
     gap: 25px;
@@ -30,8 +28,8 @@ export const CartStyle = styled.div`
     position: relative;
     span{
         position: absolute;
-        top: -7px;
-        right: -7px;
+        top: -11px;
+        right: -11px;
         padding: 0 4px;
         color: var( --color-white);
         background-color: var(--color-green);
@@ -53,6 +51,15 @@ export const ListSectionStyled = styled.div`
     gap: 25px;
     padding: 20px 15px;
     flex-direction: row;
+    @media(min-width: 700px){
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+        height: 900px;
+        width: 100%;
+        padding:  15px 15px;
+        gap: 35px;
+    }
+
    }
 
    li{
@@ -63,6 +70,10 @@ export const ListSectionStyled = styled.div`
     transition: .2s ease-in;
     display: flex;
     flex-direction: column;
+    @media(min-width: 700px){
+        min-width: 22%;
+        height: 40%;
+    }
 
     :hover{
         border: 2px solid var(--color-green-2);
@@ -186,4 +197,29 @@ export const SearchBarDiv = styled.div<iSearchStyledProps>`
    }
 
 
+`
+
+export const MainDiv = styled.div`
+  max-width: 1100px;
+   
+   @media(min-width: 700px){
+      padding: 0 40px;
+      margin: 0 auto;
+      display: flex;
+      margin-top: 100px;
+   }
+`
+
+
+export const NavContainer = styled.div`
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+   
+   @media(min-width: 700px){
+      padding: 0 40px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+   }
 `

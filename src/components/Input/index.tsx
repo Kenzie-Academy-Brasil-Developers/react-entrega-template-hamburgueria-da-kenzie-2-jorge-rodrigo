@@ -4,19 +4,20 @@ import { InputFieldStyled } from "./style"
 
 
 interface iInputProps{
-    label: string,
+    label?: string,
     type:string,
     placeholder:string,
     id:string,
-    register: UseFormRegisterReturn<string>
+    register: UseFormRegisterReturn<string>,
+    disable?: boolean
 }
 
-const Input = ({ label, type, placeholder,id,register}: iInputProps) => {
+const Input = ({ label, type, placeholder,id,register, disable}: iInputProps) => {
 
     return ( 
         <InputFieldStyled>
-            <label htmlFor={id}>{label}</label>
-            <input type={type} placeholder={placeholder} id={id} {...register}/>
+            {label && <label htmlFor={id}>{label}</label>}
+            <input type={type} placeholder={placeholder} id={id} {...register} disabled={disable}/>
         </InputFieldStyled>
     )
 }

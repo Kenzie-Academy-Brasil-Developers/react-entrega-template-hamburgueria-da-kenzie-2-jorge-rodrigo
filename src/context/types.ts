@@ -6,6 +6,8 @@ export interface iUserContext{
     login: (dataItem: iLogin) => void;
     register: (dataItem: iRegister) => void;
     user: iUser | null;
+    loading: boolean,
+    exit: () => void
 }
 
 export interface iLogin{

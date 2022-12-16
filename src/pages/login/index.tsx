@@ -9,15 +9,18 @@ import { Link } from "react-router-dom"
 import Header from "../../components/Header"
 import Input from "../../components/Input"
 import { loginSchema } from "./loginSchema"
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from "../../assets/loading 2.gif"
 
 export interface iUserForm{
    email:string,
    password:string
-}
+} 
 
 const LoginPage = () => {
 
-  const { login } = useContext(UserContext)
+  const { login,loading  } = useContext(UserContext)
 
   
   const { register,handleSubmit,formState: { errors }, reset } = useForm<iUserForm>({
@@ -32,6 +35,7 @@ const LoginPage = () => {
 
    
     return (
+      <>
         <MainDiv>
          <Header />
           <div>
@@ -42,12 +46,17 @@ const LoginPage = () => {
 
               <Input label={"Senha"} type={"password"} placeholder={"Digite sua senha"} id={"password"} register={register("password")}/>
               {errors.password? <span>{errors.password.message}</span>: <></>}
-              <Button color="green">Logar</Button>
+              {!loading && <Button color="green">Logar</Button>}
+              {loading && <Button color="green" disable={true}><img src={Loading} alt="loading"/></Button>}
               <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
               <Link to={"/register"}>Cadastrar</Link>
+             
+              
             </Form>
           </div>
         </MainDiv>
+        <ToastContainer />
+      </>
     )
 }
 

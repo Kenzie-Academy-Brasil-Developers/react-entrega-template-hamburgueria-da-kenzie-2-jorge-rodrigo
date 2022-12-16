@@ -31,4 +31,9 @@ export const ButtonStyled = styled.button<iButtonStyledProps>`
               align-items: center;
              `;
    }}};
+
+   img{
+    width: 50px;
+    height: 50px
+   }
 `

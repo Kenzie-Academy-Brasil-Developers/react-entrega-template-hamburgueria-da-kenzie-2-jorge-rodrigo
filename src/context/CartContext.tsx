@@ -1,6 +1,9 @@
-import { createContext, useContext, useState,useEffect } from "react";
+import React from "react";
+import { createContext, useState,useEffect } from "react";
+import { iSearchForm } from "../pages/home";
 import { api } from "../services/api";
-import { UserContext } from "./UserContext";
+import { notifyError, notifySucess } from "../services/toastfy";
+
 
 export const CartContext = createContext({} as iCartContext) 
 
@@ -16,7 +19,10 @@ interface iCartContext{
     totalPrice: number,
     removeAllCart: ()=> void,
     changeCart: (value: number,product: iProducts) => void,
-    removeProduct: (id:number) => void
+    removeProduct: (id:number) => void,
+    searchProducts: [] | iProducts[],
+    searchProduct: (data : iSearchForm) => void,
+    searchOn: boolean,
 }
 
 export interface iProducts{
@@ -25,16 +31,18 @@ export interface iProducts{
     category: string,
     price: number,
     img: string,
-    amount: number
+    amount: number,
 }
 
 export const CartProvider = ({ children }: iCartContextProps) => {
  
-    // const { user } = useContext(UserContext)
     const [ products, setProducts ] = useState<iProducts[] | null>(null)
     const [ cartProducts, setCartProducts ] = useState([] as iProducts[])
     const [ counter,setCouter ] = useState(cartProducts.length)
     const [ totalPrice, setTotalPrice ] = useState(0)
+    const [ searchOn, setSearchOn ] = useState(false)
+    const [ searchProducts, setSearchProducts] = useState([] as iProducts[])
+    const [ search, setSearch ] = useState<string>('')
    
    useEffect(() => {
     async function getProducts() {
@@ -43,8 +51,8 @@ export const CartProvider = ({ children }: iCartContextProps) => {
             api.defaults.headers.common.authorization = `Bearer ${token}`
              const { data }  = await api.get<iProducts[]>("/products")
              setProducts(data)
-        }catch(err){
-          console.log(err)
+        }catch(err : any){
+          notifyError(err.response.data)
         }
        }
        getProducts()
@@ -63,8 +71,27 @@ export const CartProvider = ({ children }: iCartContextProps) => {
       }
    }, [cartProducts,cartProducts.length])
 
+   useEffect(() => {
+      
+       async function getSearch(){
+        const { data }  = await api.get<iProducts[]>("/products")
+        const productSearched = data.filter((prod)=> {
+            const name = prod.name.toLowerCase()
+            const category = prod.category.toLowerCase()
+            return name.includes(search.toLowerCase()) || category.includes(search.toLowerCase())
+        }) 
+        setSearchProducts(productSearched)
+        setSearchOn(true)
+       }  
+  
+        
+       if(search){
+         getSearch()
+       }
+   }, [search])
+
    const changeCart = (value: number ,product: iProducts) => {
-     setCouter(counter + 1)
+    
      let index = cartProducts.indexOf(product)
      let list = cartProducts
      list[index].amount += value
@@ -81,6 +108,7 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     const filterProduct = cartProducts.filter(prod=> prod.id !== id)
  
     setCartProducts(filterProduct)
+    notifySucess("Produto removido")
    }
 
    const verifyCart = ( id : number) => {
@@ -90,7 +118,9 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     if(cartItem === undefined){
         return false
       }else{
+        notifyError("O Produto ja esta no carrinho!")
         return true
+        
       }
    }
 
@@ -98,7 +128,8 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     product.amount = 1
     if(!verifyCart(product.id)){
         setCartProducts([...cartProducts, product])
-          
+        notifySucess("Produto Adicionado ao Carrinho com sucesso")
+        setSearchOn(false)
     }
       
    }
@@ -106,9 +137,15 @@ export const CartProvider = ({ children }: iCartContextProps) => {
    const removeAllCart = () => {
     setCartProducts([])
     setTotalPrice(0)
+    notifySucess("Produtos Removidos do carrinho")
    }
 
-
+   const searchProduct = (data : iSearchForm) => {
+    setSearch(data.search)
+    if(data.search === undefined){
+      setSearchOn(false)
+    }
+   }
    
     return (
         <CartContext.Provider value={{ 
@@ -119,7 +156,10 @@ export const CartProvider = ({ children }: iCartContextProps) => {
             totalPrice,
             removeAllCart,
             changeCart,
-            removeProduct
+            removeProduct,
+            searchProducts,
+            searchProduct,
+            searchOn
             }}>
             { children }
         </CartContext.Provider>

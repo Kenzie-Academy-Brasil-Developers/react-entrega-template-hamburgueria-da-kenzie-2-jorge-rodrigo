@@ -2,54 +2,83 @@ import { LogoStyled } from "../../styles/logo"
 import Search from "../../assets/searchBTN.png"
 import Exit from "../../assets/exitBTN.png"
 import Cart from "../../assets/cartBTN.png"
-import { CartStyle, NavStyled,ListSectionStyled, SearchBarDiv } from "./style"
+import { CartStyle, NavStyled,ListSectionStyled, SearchBarDiv, MainDiv,NavContainer } from "./style"
 import { useContext,useState } from "react"
 import { CartContext } from "../../context/CartContext"
 import ProductList from "../../components/ProductList"
 import ProductCard from "../../components/ProductCard"
 import { Link } from "react-router-dom"
 import Modal from "../../components/modal"
+import { SubmitHandler, useForm } from "react-hook-form"
+import Input from "../../components/Input"
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from "../../context/UserContext"
+
+export interface iSearchForm{
+   search: string,
+}
 
 const HomePage = () => {
  
-    const { products,counter } = useContext(CartContext)
+    const { products,counter,searchProduct,searchOn,searchProducts } = useContext(CartContext)
+    const { exit  } = useContext(UserContext)
     const [ active, setActive ] = useState(false)
     const [ modalOn, setModalOn ] = useState(false)
 
+    const { register,handleSubmit,reset } = useForm<iSearchForm>()
+  
+     
+    const onHandleSubmit: SubmitHandler<iSearchForm> = (data)  => {
+      if(!active){
+         searchProduct(data)
+         reset()
+      }
+         
+    }
+ 
     const activeOn = () => {
       if(!active){
          setActive(true)
       }
       if(active){
-         setActive(false)
+        setActive(false)
       }
     }
+   
 
     return (
         <>
           {modalOn && <Modal setOff={setModalOn}/>}
            <NavStyled onActive={active}>
-              <LogoStyled>Burguer <span>Kenzie</span></LogoStyled>
+             <NavContainer>
+             <LogoStyled>Burguer <span>Kenzie</span></LogoStyled>
               <div>
                   <SearchBarDiv onActive={active} >
-                    <img src={Search} alt="" onClick={ activeOn }/>
                      <div>
-                        <input type="text" disabled={!active} placeholder="Digite sua pesquisa..."/>
+                        <form onSubmit={handleSubmit(onHandleSubmit)}>
+                         <Input type={'text'} placeholder={"Digite sua pesquisa..."} id={"searach"} register={register("search")} disable={!active}/>
+                          <button><img src={Search} alt="" onClick={ activeOn }/></button>
+                        </form>
                      </div>
                   </SearchBarDiv>
                   <CartStyle>
                      <span>{counter}</span>
                      <img src={Cart} alt=""  onClick={() => setModalOn(true)}/>
                   </CartStyle>
-                  <Link to='/' onClick={() => localStorage.clear() }><img src={Exit} alt="" /></Link>
+                  <Link to='/' onClick={ exit }><img src={Exit} alt="" /></Link>
               </div>
+             </NavContainer>
            </NavStyled>
-           <ListSectionStyled>
-             <ProductList>
-                {products && products.map(prod => <ProductCard product={prod}/> )}
-             </ProductList>
-           </ListSectionStyled>
-    
+           <MainDiv>
+            <ListSectionStyled>
+               <ProductList>
+                 {!searchOn && products && products.map(prod => <ProductCard product={prod}/> )}
+                 {searchOn && searchProducts && searchProducts.map(prod => <ProductCard product={prod}/>)}
+               </ProductList>
+            </ListSectionStyled>
+           </MainDiv>
+          <ToastContainer />
         </>
     )
 }

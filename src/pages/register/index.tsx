@@ -9,6 +9,9 @@ import Input from "../../components/Input"
 import { UserContext } from "../../context/UserContext"
 import { useContext } from "react"
 import { registerSchema } from "./registerSchema"
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from "../../assets/loading 2.gif"
 
 export interface iUserForm{
     name:string,
@@ -19,7 +22,7 @@ export interface iUserForm{
 
 const RegisterPage = () => {
   
-  const { register : registerFunc } = useContext(UserContext)
+  const { register : registerFunc,loading } = useContext(UserContext)
 
       const { register,handleSubmit,formState: { errors }, reset } = useForm<iUserForm>({
         resolver: yupResolver(registerSchema)
@@ -37,6 +40,7 @@ const RegisterPage = () => {
       }
   
     return (
+       <>
         <MainDivRegister>
           <Header />
           <DivFormSectionStyled>
@@ -56,10 +60,13 @@ const RegisterPage = () => {
 
               <Input label={"Confirmação de senha"} type={"password"} placeholder={"Digite sua senha novamente"} id={"passwordValidate"} register={register("passwordValidate")}/>
               {errors.passwordValidate? <span>{errors.passwordValidate.message}</span>: <></>}
-              <Button color="green">Cadastrar</Button>
+              {!loading && <Button color="green">Cadastrar</Button>}
+              {loading && <Button color="green" disable={true}><img src={Loading} alt="loading"/></Button>}
             </Form>
           </DivFormSectionStyled>
         </MainDivRegister>
+        <ToastContainer />
+       </>
     )
 }
 

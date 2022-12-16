@@ -6,14 +6,16 @@ export const CartListStyled = styled.li`
    width: 100%;
    padding: 8px 8px;
    display: flex;
-
+   @media(min-width: 700px){
+      width: 100%;
+   }
    img{
     height: 80%;
     width: 105px;
     background-color: var(--color-grey-6);
    }
     div{
-        width: 70%;
+        width: 80%;
         padding: 0 10px;
         height: 80%;
         display: flex;
@@ -23,6 +25,8 @@ export const CartListStyled = styled.li`
         img{
             width: 15px;
             height: 15px;
+            cursor: pointer;
+           
         }
         div{
             display: flex;

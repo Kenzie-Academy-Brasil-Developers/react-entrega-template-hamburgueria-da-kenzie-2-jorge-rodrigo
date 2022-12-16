@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
 import Button from "../Button"
 import ModalCard from "./modalCard"
-import {  ModalContainer, ModalMain, TotalDivStyled } from "./style"
+import {  MainDiv, ModalContainer, ModalMain, TotalDivStyled } from "./style"
 
 interface iModalProps{
     setOff: React.Dispatch<React.SetStateAction<boolean>>
@@ -12,10 +12,11 @@ const Modal = ( { setOff}: iModalProps ) => {
 
     const { cartProducts,totalPrice,removeAllCart } = useContext(CartContext)
     
-     
+    
     return (
      
          <ModalContainer>
+             <MainDiv>
              <ModalMain>
                 <div>
                  <h2>Carrinho de compras</h2>
@@ -39,6 +40,7 @@ const Modal = ( { setOff}: iModalProps ) => {
                     <p>Adicione itens</p> 
                 </div>}
              </ModalMain>
+             </MainDiv>
          </ModalContainer>
       
     )

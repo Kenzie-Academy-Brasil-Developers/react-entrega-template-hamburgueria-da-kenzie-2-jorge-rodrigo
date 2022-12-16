@@ -4,20 +4,29 @@ import styled from "styled-components";
 
 export const ModalContainer = styled.div`
    position: absolute;
-   height: 100vh;
+   height: 1100px;
    width: 100%;
    background-color: rgba(51, 51, 51, 0.5);
    z-index: 10000;
 
 `
-
+export const MainDiv = styled.div`
+  max-width: 1100px;
+   
+   @media(min-width: 700px){
+      margin: 0 auto;
+   }
+`
 
 export const ModalMain = styled.div`
     margin: 80px auto;
     background-color: var(--color-grey-3);
     width: 90%;
-    border-radius: 9px;
+    border-radius: 9px; 
     padding-bottom: 8px;
+    @media(min-width: 700px){
+      width: 50%;
+   }
     div:first-child{
         background-color: var(--color-green-2);
         display: flex;
@@ -28,6 +37,9 @@ export const ModalMain = styled.div`
         border-top-right-radius: 8px;
         h2{
             font-size: 18px;
+        }
+        p{
+          cursor: pointer;
         }
     }
   
