@@ -41,6 +41,8 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         }catch(err : any){
            notifyError(err.response.data)
            setLoading(false)
+        }finally{
+            setLoading(false)
         }
         
     }
