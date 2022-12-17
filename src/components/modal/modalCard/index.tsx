@@ -17,7 +17,9 @@ const ModalCard = ({ product }: iModalCard) => {
         <CartListStyled key={product.id}> 
             <img src={product.img} alt={product.name} />
             <div>
-              <h2>{product.name.substring(0, 10) + "..."}</h2>
+              <div>
+                 <h2>{product.name}</h2>
+              </div>
               <img src={Trash} alt="icone de lixo" onClick={() => removeProduct(product.id)}/>
               <div>
                  <button onClick={() => {changeCart(-1,product)}}>-</button>

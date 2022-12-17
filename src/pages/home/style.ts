@@ -52,7 +52,6 @@ export const ListSectionStyled = styled.div`
     padding: 20px 15px;
     flex-direction: row;
     @media(min-width: 700px){
-        /* flex-direction: column; */
         flex-wrap: wrap;
         height: 900px;
         width: 100%;
@@ -70,7 +69,11 @@ export const ListSectionStyled = styled.div`
     transition: .2s ease-in;
     display: flex;
     flex-direction: column;
-    @media(min-width: 700px){
+   
+    @media(min-width: 420px){
+        min-width: 37%;
+   }
+   @media(min-width: 700px){
         min-width: 22%;
         height: 40%;
     }
@@ -136,7 +139,7 @@ export const SearchBarDiv = styled.div<iSearchStyledProps>`
 
    div input{
     ${({ onActive }) => {
-      switch (onActive) {
+      switch (onActive) { 
         default: case false:
             return css`
              opacity: 0;
@@ -150,16 +153,16 @@ export const SearchBarDiv = styled.div<iSearchStyledProps>`
     top: -4px;
     left: -220px;
     width: 250px;
-    @media(max-width: 360px){
-        width: 150px;
-        left: -120px;
+    @media(max-width: 390px){
+        width: 140px;
+        left: -111px;
     }
     background-color: var(--color-white);
     z-index: 1;
     height: 38px;
     border-radius: 12px;
     outline: none;
-    padding: 8px;
+    padding: 16px;
     transition: 1.0s;
     border: 2px solid var(--color-grey-1);
     

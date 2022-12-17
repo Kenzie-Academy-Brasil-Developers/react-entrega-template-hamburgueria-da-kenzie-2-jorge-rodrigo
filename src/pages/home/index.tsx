@@ -15,7 +15,7 @@ import { UserContext } from "../../context/UserContext"
 
 export interface iSearchForm{
    search: string,
-}
+} 
 
 const HomePage = () => {
  
@@ -60,7 +60,7 @@ const HomePage = () => {
                   <SearchBarDiv onActive={active} >
                      <div>
                         <form onSubmit={handleSubmit(onHandleSubmit)}>
-                         <Input type={'text'} placeholder={"Digite sua pesquisa..."} id={"searach"} register={register("search")} disable={!active}/>
+                         <Input type={'text'} placeholder={"Sua pesquisa..."} id={"searach"} register={register("search")} disable={!active}/>
                           <button><img src={Search} alt="" onClick={ activeOn }/></button>
                         </form>
                      </div>

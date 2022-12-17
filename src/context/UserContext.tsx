@@ -27,7 +27,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         } 
       
         try{
-            console.log(token,id)
             if(token !== ''){
             api.defaults.headers.common.authorization = `Bearer ${token}`
             const { data } = await api.get<iUserGet>(`/users/${id}`)

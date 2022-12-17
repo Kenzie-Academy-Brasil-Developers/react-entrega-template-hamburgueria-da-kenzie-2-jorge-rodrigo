@@ -35,7 +35,7 @@ export const ModalMain = styled.div`
         color: var(--color-white);
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
-        h2{
+        h2{ 
             font-size: 18px;
         }
         p{
@@ -47,12 +47,13 @@ export const ModalMain = styled.div`
 
     div:last-child{
       text-align: center;
-      margin-top: 35px;
-      h3{
+      margin-top: 15px;
+      h2{
+        font-size: 16px;
         margin-bottom: 8px;
       }
       p{
-        margin-bottom: 35px;
+        margin-bottom: 235px;
       }
     }
     ul{

@@ -32,6 +32,9 @@ export const notifyError = (message : string) => {
     if(message === "Password is too short"){
         msg = "Senha muito pequena"
     }
+    if(message === "O Produto ja esta no carrinho!"){
+        msg = "O Produto ja esta no carrinho!"
+    }
     toast.error(`${msg}`, {
         position: "top-left",
         autoClose: 500,
