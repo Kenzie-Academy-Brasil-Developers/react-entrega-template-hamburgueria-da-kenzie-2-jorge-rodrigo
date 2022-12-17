@@ -9,8 +9,6 @@ import { Link } from "react-router-dom"
 import Header from "../../components/Header"
 import Input from "../../components/Input"
 import { loginSchema } from "./loginSchema"
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../../assets/loading 2.gif"
 
 export interface iUserForm{
@@ -55,7 +53,6 @@ const LoginPage = () => {
             </Form>
           </div>
         </MainDiv>
-        <ToastContainer />
       </>
     )
 }

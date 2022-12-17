@@ -46,7 +46,7 @@ export const CartProvider = ({ children }: iCartContextProps) => {
    
    useEffect(() => {
     async function getProducts() {
-        const token = JSON.parse(localStorage.getItem("@TOKEN") || '')  
+        const token = JSON.parse(`${localStorage.getItem("@TOKEN")}`)  
         try{
             api.defaults.headers.common.authorization = `Bearer ${token}`
              const { data }  = await api.get<iProducts[]>("/products")

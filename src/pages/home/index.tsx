@@ -3,7 +3,7 @@ import Search from "../../assets/searchBTN.png"
 import Exit from "../../assets/exitBTN.png"
 import Cart from "../../assets/cartBTN.png"
 import { CartStyle, NavStyled,ListSectionStyled, SearchBarDiv, MainDiv,NavContainer } from "./style"
-import { useContext,useState } from "react"
+import { useContext,useState,useEffect } from "react"
 import { CartContext } from "../../context/CartContext"
 import ProductList from "../../components/ProductList"
 import ProductCard from "../../components/ProductCard"
@@ -11,8 +11,6 @@ import { Link } from "react-router-dom"
 import Modal from "../../components/modal"
 import { SubmitHandler, useForm } from "react-hook-form"
 import Input from "../../components/Input"
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from "../../context/UserContext"
 
 export interface iSearchForm{
@@ -22,13 +20,18 @@ export interface iSearchForm{
 const HomePage = () => {
  
     const { products,counter,searchProduct,searchOn,searchProducts } = useContext(CartContext)
-    const { exit  } = useContext(UserContext)
+    const { exit,navigate } = useContext(UserContext)
     const [ active, setActive ] = useState(false)
     const [ modalOn, setModalOn ] = useState(false)
-
     const { register,handleSubmit,reset } = useForm<iSearchForm>()
-  
-     
+    const token = JSON.parse(`${localStorage.getItem("@TOKEN")}`)
+   
+    useEffect(()=> {
+      if(!token){
+         navigate('/')
+      }
+   },[navigate,token])
+
     const onHandleSubmit: SubmitHandler<iSearchForm> = (data)  => {
       if(!active){
          searchProduct(data)
@@ -78,7 +81,6 @@ const HomePage = () => {
                </ProductList>
             </ListSectionStyled>
            </MainDiv>
-          <ToastContainer />
         </>
     )
 }

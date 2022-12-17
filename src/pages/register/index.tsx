@@ -9,8 +9,6 @@ import Input from "../../components/Input"
 import { UserContext } from "../../context/UserContext"
 import { useContext } from "react"
 import { registerSchema } from "./registerSchema"
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../../assets/loading 2.gif"
 
 export interface iUserForm{
@@ -65,7 +63,6 @@ const RegisterPage = () => {
             </Form>
           </DivFormSectionStyled>
         </MainDivRegister>
-        <ToastContainer />
        </>
     )
 }

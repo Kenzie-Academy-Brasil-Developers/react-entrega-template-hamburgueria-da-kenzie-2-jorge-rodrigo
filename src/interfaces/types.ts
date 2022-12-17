@@ -1,3 +1,5 @@
+import { NavigateFunction } from "react-router-dom";
+
 export interface iUserContextProps{
     children: React.ReactNode;
 }
@@ -7,7 +9,9 @@ export interface iUserContext{
     register: (dataItem: iRegister) => void;
     user: iUser | null;
     loading: boolean,
-    exit: () => void
+    exit: () => void,
+    loadingPage: boolean,
+    navigate: NavigateFunction
 }
 
 export interface iLogin{
@@ -25,6 +29,13 @@ export interface iUser{
     email: string,
 	name: string,
 	id: number
+}
+
+export interface iUserGet{
+    email: string,
+	name: string,
+	id: number,
+    password:string
 }
 
 export interface iUserResponse{
