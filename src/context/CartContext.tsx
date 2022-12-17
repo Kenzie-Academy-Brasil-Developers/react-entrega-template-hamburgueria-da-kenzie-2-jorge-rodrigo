@@ -43,6 +43,8 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     const [ searchOn, setSearchOn ] = useState(false)
     const [ searchProducts, setSearchProducts] = useState([] as iProducts[])
     const [ search, setSearch ] = useState<string>('')
+    const cartStorage= JSON.parse(`${localStorage.getItem("@CARTPRODUCTS")}`)
+
    
    useEffect(() => {
     async function getProducts() {
@@ -69,7 +71,13 @@ export const CartProvider = ({ children }: iCartContextProps) => {
       if(cartProducts.length > 0){
         totalPriceSum()
       }
-   }, [cartProducts,cartProducts.length])
+      if(cartProducts.length <= 0){
+        if(cartStorage){
+          setCartProducts(cartStorage)
+        }
+      }
+      
+   }, [cartProducts,cartProducts.length,cartStorage])
 
    useEffect(() => {
       
@@ -90,6 +98,8 @@ export const CartProvider = ({ children }: iCartContextProps) => {
        }
    }, [search])
 
+
+
    const changeCart = (value: number ,product: iProducts) => {
     
      let index = cartProducts.indexOf(product)
@@ -99,6 +109,7 @@ export const CartProvider = ({ children }: iCartContextProps) => {
         list[index].amount = 1
       }
      setCartProducts([...list])
+     localStorage.setItem("@CARTPRODUCTS" , JSON.stringify([...list]))
     
 
    }
@@ -108,6 +119,7 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     const filterProduct = cartProducts.filter(prod=> prod.id !== id)
  
     setCartProducts(filterProduct)
+    localStorage.setItem("@CARTPRODUCTS" , JSON.stringify(filterProduct))
     notifySucess("Produto removido")
    }
 
@@ -128,6 +140,7 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     product.amount = 1
     if(!verifyCart(product.id)){
         setCartProducts([...cartProducts, product])
+        localStorage.setItem("@CARTPRODUCTS" , JSON.stringify([...cartProducts, product]))
         notifySucess("Produto Adicionado ao Carrinho com sucesso")
         setSearchOn(false)
     }
@@ -138,6 +151,7 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     setCartProducts([])
     setTotalPrice(0)
     notifySucess("Produtos Removidos do carrinho")
+    localStorage.removeItem("@CARTPRODUCTS")
    }
 
    const searchProduct = (data : iSearchForm) => {
