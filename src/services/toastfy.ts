@@ -16,7 +16,23 @@ export const notifySucess = (message : string) => {
 
 
 export const notifyError = (message : string) => {
-    toast.error(`${message}`, {
+    let msg 
+    if(message === "Incorrect password"){
+        msg = "Senha Incorreta"
+    }
+    if(message === "Cannot find user"){
+        msg = "Usuario não Encontrado"
+    }
+    if(message === "Email format is invalid"){
+        msg = "Formato de Email Invalido"
+    }
+    if(message === "Email already exists"){
+        msg = "Email ja esta cadastrado"
+    }
+    if(message === "Password is too short"){
+        msg = "Senha muito pequena"
+    }
+    toast.error(`${msg}`, {
         position: "top-left",
         autoClose: 500,
         hideProgressBar: false,
