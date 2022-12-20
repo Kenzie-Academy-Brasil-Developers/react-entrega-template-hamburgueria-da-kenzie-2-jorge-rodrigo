@@ -58,7 +58,16 @@ export const CartProvider = ({ children }: iCartContextProps) => {
         }
        }
        getProducts()
-       setCouter(cartProducts.length)
+      
+      if(cartProducts.length > 0) {
+        const amoutCounter = cartProducts.reduce<number>((accumulator :number, obj ) => {
+          return accumulator + obj.amount;
+        }, 0);
+        setCouter(amoutCounter)
+      }
+      if(cartProducts.length === 0){
+        setCouter(0)
+      }
 
        const totalPriceSum = ()=> {
      
@@ -70,6 +79,7 @@ export const CartProvider = ({ children }: iCartContextProps) => {
    } 
       if(cartProducts.length > 0){
         totalPriceSum()
+
       }
       if(cartProducts.length <= 0){
         if(cartStorage){

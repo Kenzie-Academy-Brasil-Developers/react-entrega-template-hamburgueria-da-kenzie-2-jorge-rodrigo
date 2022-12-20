@@ -151,11 +151,11 @@ export const SearchBarDiv = styled.div<iSearchStyledProps>`
    }}};
     position: absolute;
     top: -4px;
-    left: -220px;
-    width: 250px;
-    @media(max-width: 390px){
-        width: 140px;
-        left: -111px;
+    width: 150px;
+    left: -117px;
+    @media(min-width:700px){
+        left: -220px;
+        width: 250px;
     }
     background-color: var(--color-white);
     z-index: 1;

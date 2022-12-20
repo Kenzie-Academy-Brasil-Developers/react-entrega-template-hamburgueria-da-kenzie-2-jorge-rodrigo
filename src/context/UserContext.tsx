@@ -1,7 +1,7 @@
 import { createContext, useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
-import { notifyError } from "../services/toastfy";
+import { notifyError, notifySucess } from "../services/toastfy";
 import { iUserContext, iUserContextProps, iUserResponse, iUser, iLogin, iRegister, iUserGet } from "../interfaces/types";
 
 
@@ -47,10 +47,14 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         setLoading(true)
         try{     
            const { data } = await api.post<iUserResponse>("/login",dataItem)
-           setUser(data.user)
-           localStorage.setItem("@TOKEN",JSON.stringify(data.accessToken || null))
-           localStorage.setItem("@USERID",JSON.stringify(data.user.id))
-           navigate("/homepage")
+           notifySucess("Login Realizado com sucesso!")
+           if(data.user){
+            setUser(data.user)
+            localStorage.setItem("@TOKEN",JSON.stringify(data.accessToken || null))
+            localStorage.setItem("@USERID",JSON.stringify(data.user.id))
+            navigate("/homepage")
+           }
+           
         }catch(err : any){
            notifyError(err.response.data)
            setLoading(false)
@@ -65,8 +69,12 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         setLoading(true)
         try{
             const { data } = await api.post<iUserResponse>("/users",dataItem)
-            setUser(null)
-            navigate("/")
+            notifySucess("Cadastro Realizado com sucesso!")
+            if(data){
+                setUser(null)
+                navigate("/")
+            }
+            
         }catch(err : any){
            notifyError(err.response.data)
            setLoading(false)
