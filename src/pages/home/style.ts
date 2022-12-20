@@ -6,11 +6,11 @@ interface iSearchStyledProps{
 
 export const NavStyled = styled.nav<iSearchStyledProps>`
    background-color: var(--color-grey-3);
-   padding-bottom: 15px;
+   padding-bottom: 12px;
    width: 100%; 
 
-   div:last-child{
 
+   div:last-child{
     padding-top: 15px;
     display: flex;
     padding-right: 25px;
@@ -20,6 +20,9 @@ export const NavStyled = styled.nav<iSearchStyledProps>`
     height: 20px;
     width: 20px;
     cursor: pointer;
+   }
+   @media(min-width: 700px){
+     padding-bottom: 18px;
    }
 `
 
@@ -204,12 +207,13 @@ export const SearchBarDiv = styled.div<iSearchStyledProps>`
 
 export const MainDiv = styled.div`
   max-width: 1100px;
+  margin-top: 20px;
    
    @media(min-width: 700px){
       padding: 0 40px;
       margin: 0 auto;
       display: flex;
-      margin-top: 100px;
+      margin-top: 50px;
    }
 `
 

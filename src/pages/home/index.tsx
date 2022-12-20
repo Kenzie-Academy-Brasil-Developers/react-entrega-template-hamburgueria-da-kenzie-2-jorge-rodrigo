@@ -15,7 +15,7 @@ import { UserContext } from "../../context/UserContext"
 
 export interface iSearchForm{
    search: string,
-} 
+}  
 
 const HomePage = () => {
  
@@ -48,7 +48,7 @@ const HomePage = () => {
         setActive(false)
       }
     }
-   
+    
 
     return (
         <>
